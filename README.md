@@ -14,17 +14,17 @@ A fast, simple command-line tool that downloads images from URLs and applies a c
 
 ### Download Prebuilt Binaries (Recommended)
 
-Download the latest release for your platform from the [Releases page](https://github.com/YOUR_USERNAME/profile-crop/releases):
+Download the latest release for your platform from the [Releases page](https://github.com/rhydlewis/profile-crop/releases):
 
 **macOS:**
 ```bash
 # Intel Macs
-curl -L https://github.com/YOUR_USERNAME/profile-crop/releases/latest/download/ccrop-macos-x86_64 -o ccrop
+curl -L https://github.com/rhydlewis/profile-crop/releases/latest/download/ccrop-macos-x86_64 -o ccrop
 chmod +x ccrop
 sudo mv ccrop /usr/local/bin/
 
 # Apple Silicon (M1/M2/M3)
-curl -L https://github.com/YOUR_USERNAME/profile-crop/releases/latest/download/ccrop-macos-aarch64 -o ccrop
+curl -L https://github.com/rhydlewis/profile-crop/releases/latest/download/ccrop-macos-aarch64 -o ccrop
 chmod +x ccrop
 sudo mv ccrop /usr/local/bin/
 ```
@@ -32,12 +32,12 @@ sudo mv ccrop /usr/local/bin/
 **Linux:**
 ```bash
 # x86_64
-curl -L https://github.com/YOUR_USERNAME/profile-crop/releases/latest/download/ccrop-linux-x86_64 -o ccrop
+curl -L https://github.com/rhydlewis/profile-crop/releases/latest/download/ccrop-linux-x86_64 -o ccrop
 chmod +x ccrop
 sudo mv ccrop /usr/local/bin/
 
 # ARM64
-curl -L https://github.com/YOUR_USERNAME/profile-crop/releases/latest/download/ccrop-linux-aarch64 -o ccrop
+curl -L https://github.com/rhydlewis/profile-crop/releases/latest/download/ccrop-linux-aarch64 -o ccrop
 chmod +x ccrop
 sudo mv ccrop /usr/local/bin/
 ```
@@ -53,7 +53,7 @@ sudo mv ccrop /usr/local/bin/
 If you have Rust installed:
 
 ```bash
-cargo install --git https://github.com/YOUR_USERNAME/profile-crop
+cargo install --git https://github.com/rhydlewis/profile-crop
 ```
 
 ## Usage
@@ -98,7 +98,7 @@ ccrop https://example.com/team-photo.jpg -o ~/Desktop/cropped-avatar.png
 Requires Rust 1.70 or later:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/profile-crop
+git clone https://github.com/rhydlewis/profile-crop
 cd profile-crop
 cargo build --release
 ./target/release/ccrop --help

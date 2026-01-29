@@ -2,9 +2,9 @@
 name = "ccrop"
 version = "0.1.0"
 edition = "2021"
-authors = ["Your Name <your.email@example.com>"]
+authors = ["Rhyd Lewis <rhyd.lewis@icloud.com>"]
 description = "A CLI tool to download images from URLs and apply circular crops with transparent backgrounds"
-repository = "https://github.com/YOUR_USERNAME/profile-crop"
+repository = "https://github.com/rhydlewis/profile-crop"
 license = "MIT"
 keywords = ["image", "crop", "cli", "circular", "avatar"]
 categories = ["command-line-utilities", "multimedia::images"]
