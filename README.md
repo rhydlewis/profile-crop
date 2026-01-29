@@ -31,13 +31,7 @@ sudo mv ccrop /usr/local/bin/
 
 **Linux:**
 ```bash
-# x86_64
 curl -L https://github.com/rhydlewis/profile-crop/releases/latest/download/ccrop-linux-x86_64 -o ccrop
-chmod +x ccrop
-sudo mv ccrop /usr/local/bin/
-
-# ARM64
-curl -L https://github.com/rhydlewis/profile-crop/releases/latest/download/ccrop-linux-aarch64 -o ccrop
 chmod +x ccrop
 sudo mv ccrop /usr/local/bin/
 ```
