@@ -13,6 +13,9 @@ pub enum CropError {
 
     #[error("Failed to write output file: {0}")]
     FileWriteError(String),
+
+    #[error("Clipboard error: {0}")]
+    ClipboardError(String),
 }
 
 pub type Result<T> = std::result::Result<T, CropError>;
