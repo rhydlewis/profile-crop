@@ -1,5 +1,6 @@
 use crate::{CropError, Result};
 use image::{DynamicImage, ImageBuffer, Rgba};
+use arboard::{Clipboard, ImageData};
 
 pub fn apply_circular_crop(img: DynamicImage) -> Result<DynamicImage> {
     // Convert to RGBA to support transparency
@@ -44,4 +45,27 @@ pub fn save_image(img: &DynamicImage, output_path: &str) -> Result<()> {
     img.save(output_path).map_err(|e| {
         CropError::FileWriteError(format!("Failed to save to '{}': {}", output_path, e))
     })
+}
+
+pub fn copy_to_clipboard(img: &DynamicImage) -> Result<()> {
+    // Convert DynamicImage to RGBA8 format
+    let rgba = img.to_rgba8();
+    let (width, height) = rgba.dimensions();
+
+    // Create ImageData for clipboard
+    let img_data = ImageData {
+        width: width as usize,
+        height: height as usize,
+        bytes: rgba.as_raw().into(),
+    };
+
+    // Copy to clipboard
+    let mut clipboard = Clipboard::new()
+        .map_err(|e| CropError::ClipboardError(e.to_string()))?;
+
+    clipboard
+        .set_image(img_data)
+        .map_err(|e| CropError::ClipboardError(e.to_string()))?;
+
+    Ok(())
 }
