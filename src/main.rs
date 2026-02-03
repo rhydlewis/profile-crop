@@ -30,6 +30,15 @@ fn run(cli: Cli) -> Result<()> {
     println!("Processing...");
     let cropped = process::apply_circular_crop(img)?;
 
+    // Copy to clipboard (unless disabled)
+    if !cli.no_clipboard {
+        if let Err(e) = process::copy_to_clipboard(&cropped) {
+            eprintln!("Warning: Failed to copy to clipboard: {}", e);
+        } else {
+            println!("Copied to clipboard");
+        }
+    }
+
     // Save to file
     process::save_image(&cropped, &cli.output)?;
 
