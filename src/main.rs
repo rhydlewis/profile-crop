@@ -15,6 +15,10 @@ struct Cli {
     /// Output file path (defaults to output.png)
     #[arg(short, long, default_value = "output.png")]
     output: String,
+
+    /// Skip copying to clipboard
+    #[arg(long, default_value_t = false)]
+    no_clipboard: bool,
 }
 
 fn run(cli: Cli) -> Result<()> {
