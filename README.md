@@ -7,8 +7,10 @@ A fast, simple command-line tool that downloads images from URLs and applies a c
 - Download images from any HTTP/HTTPS URL
 - Automatic center cropping for non-square images
 - Circular mask with transparent background
+- Automatic clipboard copy (with opt-out flag)
 - PNG output with alpha channel
 - Supports all common image formats (JPEG, PNG, GIF, WebP, BMP, TIFF)
+- Cross-platform clipboard support (macOS, Windows, Linux)
 
 ## Installation
 
@@ -52,15 +54,20 @@ cargo install --git https://github.com/rhydlewis/profile-crop
 
 ## Usage
 
-Basic usage with default output (saves to `output.png`):
+Basic usage with default output (saves to `output.png` and copies to clipboard):
 ```bash
 ccrop https://example.com/photo.jpg
 ```
 
-Specify custom output path:
+Specify custom output path (still copies to clipboard):
 ```bash
 ccrop https://example.com/photo.jpg --output avatar.png
 ccrop https://example.com/photo.jpg -o ~/Pictures/profile.png
+```
+
+Skip clipboard copy (file only):
+```bash
+ccrop https://example.com/photo.jpg --no-clipboard
 ```
 
 View help:
@@ -85,7 +92,8 @@ ccrop https://example.com/team-photo.jpg -o ~/Desktop/cropped-avatar.png
 1. **Download**: Fetches the image from the provided URL (30-second timeout)
 2. **Center Square**: For non-square images, extracts the center square region
 3. **Circular Crop**: Applies a circular mask, making everything outside the circle transparent
-4. **Save**: Outputs as PNG with alpha channel for transparency
+4. **Copy to Clipboard**: Automatically copies the result to system clipboard (unless `--no-clipboard` is used)
+5. **Save**: Outputs as PNG with alpha channel for transparency
 
 ## Building from Source
 
