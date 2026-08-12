@@ -1,2 +1,6 @@
 /target
 *.png
+.DS_Store
+
+# Parked local experiments, not part of the project.
+/archive

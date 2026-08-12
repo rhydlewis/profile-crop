@@ -1,14 +1,14 @@
 # ccrop - Circular Crop CLI Tool
 
-A fast, simple command-line tool that downloads images from URLs and applies a circular crop with transparent background.
+A fast, simple command-line tool that turns any image — from a URL or a local file — into a circular crop with a transparent background.
 
 ## Features
 
-- Download images from any HTTP/HTTPS URL
+- Crop images from any HTTP/HTTPS URL or local file
 - Automatic center cropping for non-square images
 - Circular mask with transparent background
 - Automatic clipboard copy (with opt-out flag)
-- PNG output with alpha channel
+- PNG output with alpha channel, named after the source file
 - Supports all common image formats (JPEG, PNG, GIF, WebP, BMP, TIFF)
 - Cross-platform clipboard support (macOS, Windows, Linux)
 
@@ -54,12 +54,23 @@ cargo install --git https://github.com/rhydlewis/profile-crop
 
 ## Usage
 
-Basic usage with default output (saves to `output.png` and copies to clipboard):
+Basic usage (copies to clipboard and saves next to where you run it, named
+after the source — here `photo.png`):
 ```bash
 ccrop https://example.com/photo.jpg
 ```
 
-Specify custom output path (still copies to clipboard):
+Crop a local file instead of a URL:
+```bash
+ccrop ~/Pictures/team-photo.jpg        # saves team-photo.png
+```
+
+The output is always a PNG (so the transparent background survives), named
+after the source filename. If that would overwrite the input file itself
+(e.g. `ccrop avatar.png`), the tool saves to `<name>-crop.png` instead. If the
+URL has no filename (e.g. a bare domain), it falls back to `output.png`.
+
+Specify a custom output path (still copies to clipboard):
 ```bash
 ccrop https://example.com/photo.jpg --output avatar.png
 ccrop https://example.com/photo.jpg -o ~/Pictures/profile.png
@@ -70,9 +81,10 @@ Skip clipboard copy (file only):
 ccrop https://example.com/photo.jpg --no-clipboard
 ```
 
-View help:
+View help or version:
 ```bash
 ccrop --help
+ccrop --version    # or -v
 ```
 
 ## Examples
@@ -89,7 +101,7 @@ ccrop https://example.com/team-photo.jpg -o ~/Desktop/cropped-avatar.png
 
 ## How It Works
 
-1. **Download**: Fetches the image from the provided URL (30-second timeout)
+1. **Load**: Fetches the image from the provided URL (30-second timeout) or reads it from the local file
 2. **Center Square**: For non-square images, extracts the center square region
 3. **Circular Crop**: Applies a circular mask, making everything outside the circle transparent
 4. **Copy to Clipboard**: Automatically copies the result to system clipboard (unless `--no-clipboard` is used)
@@ -97,7 +109,7 @@ ccrop https://example.com/team-photo.jpg -o ~/Desktop/cropped-avatar.png
 
 ## Building from Source
 
-Requires Rust 1.70 or later:
+Requires a recent stable Rust toolchain:
 
 ```bash
 git clone https://github.com/rhydlewis/profile-crop
@@ -105,6 +117,9 @@ cd profile-crop
 cargo build --release
 ./target/release/ccrop --help
 ```
+
+The cropping logic lives in the `ccrop` library (`src/lib.rs`); the CLI calls
+into it, and the library functions are covered by `cargo test`.
 
 ## Error Handling
 
