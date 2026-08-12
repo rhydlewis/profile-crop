@@ -1,6 +1,6 @@
 [package]
 name = "ccrop"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2021"
 authors = ["Rhyd Lewis <rhyd.lewis@icloud.com>"]
 description = "A CLI tool that applies a circular crop with transparent background to images from URLs or local files"
